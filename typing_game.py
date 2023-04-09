@@ -1,7 +1,13 @@
 from tkinter import *
+import random
 
 slideTexts = ""
 count = 0
+listOfWords = ["angle", "angry", "animal", "anniversary", "announce", "annual", "another", "answer", "anticipate",
+               "anxiety", "any", "anybody", "beautiful", "beauty", "because", "become", "bed", "bedroom", "beer",
+               "before", "begin", "beginning", "behavior", "behind", "being", "belief", "Canadian", "candidate", "cap",
+               "capability", "capable", "capacity", "capital", "captain", "decide", "decision", "deck", "declare",
+               "write", "wrong", "yard", "yeah", "year", "yell", "yellow", "yes"]
 
 
 def welcomeTextSlideShow():
@@ -30,4 +36,7 @@ movingText = Label(root, text="WELCOME!. IMPROVE YOUR TYPING SPEED",
                    background="DarkSeaGreen4", font=("Courier", 10, "bold"), width=48)
 movingText.place(x=0, y=10)
 welcomeTextSlideShow()
+random.shuffle(listOfWords)
+typingWordLabel = Label(root, text=listOfWords[0], font=("Courier", 30, "bold"), background="DarkSeaGreen4")
+typingWordLabel.place(x=200, y=390, anchor=CENTER)
 root.mainloop()
