@@ -39,4 +39,11 @@ welcomeTextSlideShow()
 random.shuffle(listOfWords)
 typingWordLabel = Label(root, text=listOfWords[0], font=("Courier", 30, "bold"), background="DarkSeaGreen4")
 typingWordLabel.place(x=200, y=390, anchor=CENTER)
+
+textCountLabel = Label(root, text="0", font=("Courier", 15, "bold"), background="DarkSeaGreen4")
+textCountLabel.place(x=327, y=130)
+
+staticTextLabel = Label(root, text="Words", font=("Courier", 15, "bold"), background="DarkSeaGreen4")
+staticTextLabel.place(x=300, y=100)
+
 root.mainloop()
