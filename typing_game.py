@@ -51,4 +51,8 @@ timeCountLabel.place(x=40, y=130)
 
 timeLabel = Label(root, text="Timer", font=("Courier", 15, "bold"), background="DarkSeaGreen4")
 timeLabel.place(x=20, y=100)
+
+userInput = Entry(root, font=("Courier", 20, "bold"), bd=3, justify=CENTER)
+userInput.place(x=200, y=450, anchor=CENTER)
+userInput.focus_set()
 root.mainloop()
