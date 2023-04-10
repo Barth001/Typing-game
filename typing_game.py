@@ -55,4 +55,8 @@ timeLabel.place(x=20, y=100)
 userInput = Entry(root, font=("Courier", 20, "bold"), bd=3, justify=CENTER)
 userInput.place(x=200, y=450, anchor=CENTER)
 userInput.focus_set()
+
+inputTextLabel = Label(root, text="Type the displayed word and hit enter",
+                       font=("Courier", 10, "bold"), background="DarkSeaGreen4", fg="red")
+inputTextLabel.place(x=200, y=500, anchor=CENTER)
 root.mainloop()
