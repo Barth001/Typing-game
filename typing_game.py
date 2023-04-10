@@ -46,4 +46,9 @@ textCountLabel.place(x=327, y=130)
 staticTextLabel = Label(root, text="Words", font=("Courier", 15, "bold"), background="DarkSeaGreen4")
 staticTextLabel.place(x=300, y=100)
 
+timeCountLabel = Label(root, text="0", font=("Courier", 15, "bold"), background="DarkSeaGreen4")
+timeCountLabel.place(x=40, y=130)
+
+timeLabel = Label(root, text="Timer", font=("Courier", 15, "bold"), background="DarkSeaGreen4")
+timeLabel.place(x=20, y=100)
 root.mainloop()
