@@ -1,8 +1,67 @@
 from tkinter import *
+from tkinter import messagebox
 import random
 
 slideTexts = ""
 count = 0
+correctWord = 0
+incorrectWord = 0
+k = 0
+remainingTime = 60
+
+
+def timing():
+    global remainingTime, k, correctWord, incorrectWord
+    if remainingTime > 0:
+        remainingTime -= 1
+        timeCountLabel.config(text=remainingTime)
+        timeCountLabel.after(1000, timing)
+    else:
+        userInput.config(state=DISABLED)
+        result = correctWord - incorrectWord
+        inputTextLabel.config(text=f'Correct word {correctWord}, Incorrect word {incorrectWord}\n'
+                                   f'Final score {result}')
+        if result > 15:
+            emojiLabel1.config(image=sadImg)
+            emojiLabel2.config(image=sadImg)
+        elif result == 15:
+            emojiLabel1.config(image=happyImg)
+            emojiLabel2.config(image=happyImg)
+        else:
+            emojiLabel1.config(image=profImg)
+            emojiLabel2.config(image=profImg)
+
+        deci = messagebox.askokcancel("Confirm", "Do you wish to play again")
+        if deci:
+            k, correctWord, incorrectWord, remainingTime = 0, 0, 0, 60
+            textCountLabel.config(text="0")
+            timeCountLabel.config(text="60")
+            userInput.config(state=NORMAL)
+            inputTextLabel.config(text="Type the displayed word and hit enter")
+            emojiLabel1.config(image="")
+            emojiLabel2.config(image="")
+
+
+def play(event):
+    if userInput.get() != "":
+        global k, correctWord, incorrectWord
+        k += 1
+        textCountLabel.config(text=k)
+        inputTextLabel.config(text="")
+        if remainingTime == 60:
+            timing()
+
+        if userInput.get() == typingWordLabel["text"]:
+            correctWord += 1
+
+        else:
+            incorrectWord += 1
+
+        random.shuffle(listOfWords)
+        typingWordLabel.config(text=listOfWords[0])
+        userInput.delete(0, END)
+
+
 listOfWords = ["angle", "angry", "animal", "anniversary", "announce", "annual", "another", "answer", "anticipate",
                "anxiety", "any", "anybody", "beautiful", "beauty", "because", "become", "bed", "bedroom", "beer",
                "before", "begin", "beginning", "behavior", "behind", "being", "belief", "Canadian", "candidate", "cap",
@@ -46,7 +105,7 @@ textCountLabel.place(x=327, y=130)
 staticTextLabel = Label(root, text="Words", font=("Courier", 15, "bold"), background="DarkSeaGreen4")
 staticTextLabel.place(x=300, y=100)
 
-timeCountLabel = Label(root, text="0", font=("Courier", 15, "bold"), background="DarkSeaGreen4")
+timeCountLabel = Label(root, text="60", font=("Courier", 15, "bold"), background="DarkSeaGreen4")
 timeCountLabel.place(x=40, y=130)
 
 timeLabel = Label(root, text="Timer", font=("Courier", 15, "bold"), background="DarkSeaGreen4")
@@ -64,8 +123,10 @@ happyImg = PhotoImage(file='icons/happy.png')
 sadImg = PhotoImage(file='icons/happy.png')
 profImg = PhotoImage(file='icons/happy.png')
 
-happyImgLabel1 = Label(root, background="DarkSeaGreen4")
-happyImgLabel1.place(x=10, y=350)
-happyImgLabel2 = Label(root, background="DarkSeaGreen4")
-happyImgLabel2.place(x=320, y=350)
+emojiLabel1 = Label(root, background="DarkSeaGreen4")
+emojiLabel1.place(x=10, y=350)
+emojiLabel2 = Label(root, background="DarkSeaGreen4")
+emojiLabel2.place(x=320, y=350)
+
+root.bind("<Return>", play)
 root.mainloop()
