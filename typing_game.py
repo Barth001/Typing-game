@@ -59,4 +59,13 @@ userInput.focus_set()
 inputTextLabel = Label(root, text="Type the displayed word and hit enter",
                        font=("Courier", 10, "bold"), background="DarkSeaGreen4", fg="red")
 inputTextLabel.place(x=200, y=500, anchor=CENTER)
+
+happyImg = PhotoImage(file='icons/happy.png')
+sadImg = PhotoImage(file='icons/happy.png')
+profImg = PhotoImage(file='icons/happy.png')
+
+happyImgLabel1 = Label(root, background="DarkSeaGreen4")
+happyImgLabel1.place(x=10, y=350)
+happyImgLabel2 = Label(root, background="DarkSeaGreen4")
+happyImgLabel2.place(x=320, y=350)
 root.mainloop()
