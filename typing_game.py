@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter import messagebox
+from database import listOfWords
 import random
 
 slideTexts = ""
@@ -21,13 +22,13 @@ def timing():
         result = correctWord - incorrectWord
         inputTextLabel.config(text=f'Correct word {correctWord}, Incorrect word {incorrectWord}\n'
                                    f'Final score {result}')
-        if result > 15:
+        if result < 15:
             emojiLabel1.config(image=sadImg)
             emojiLabel2.config(image=sadImg)
-        elif result == 15:
+        if result == 15:
             emojiLabel1.config(image=happyImg)
             emojiLabel2.config(image=happyImg)
-        else:
+        if result > 15:
             emojiLabel1.config(image=profImg)
             emojiLabel2.config(image=profImg)
 
@@ -62,13 +63,6 @@ def play(event):
         userInput.delete(0, END)
 
 
-listOfWords = ["angle", "angry", "animal", "anniversary", "announce", "annual", "another", "answer", "anticipate",
-               "anxiety", "any", "anybody", "beautiful", "beauty", "because", "become", "bed", "bedroom", "beer",
-               "before", "begin", "beginning", "behavior", "behind", "being", "belief", "Canadian", "candidate", "cap",
-               "capability", "capable", "capacity", "capital", "captain", "decide", "decision", "deck", "declare",
-               "write", "wrong", "yard", "yeah", "year", "yell", "yellow", "yes"]
-
-
 def welcomeTextSlideShow():
     global slideTexts, count
     string = "WELCOME!. IMPROVE YOUR TYPING SPEED"
@@ -85,14 +79,14 @@ root = Tk()
 root.title("Typing Game -- created by Barth")
 logoIcon = PhotoImage(file='icons/typing-game-icon.png')
 root.tk.call('wm', 'iconphoto', root._w, logoIcon)
-root.geometry("400x550+900+50")
+root.geometry("400x550+500+50")
 root.resizable(False, False)
 root.config(background="DarkSeaGreen4")
 backgroundImg = PhotoImage(file='icons/clock.png')
 backgroundLabel = Label(root, image=backgroundImg, background="DarkSeaGreen4")
 backgroundLabel.place(x=70, y=100)
 movingText = Label(root, text="WELCOME!. IMPROVE YOUR TYPING SPEED",
-                   background="DarkSeaGreen4", font=("Courier", 10, "bold"), width=48)
+                   background="DarkSeaGreen4", font=("Courier", 10, "bold"), width=48, fg="red")
 movingText.place(x=0, y=10)
 welcomeTextSlideShow()
 random.shuffle(listOfWords)
@@ -120,8 +114,8 @@ inputTextLabel = Label(root, text="Type the displayed word and hit enter",
 inputTextLabel.place(x=200, y=500, anchor=CENTER)
 
 happyImg = PhotoImage(file='icons/happy.png')
-sadImg = PhotoImage(file='icons/happy.png')
-profImg = PhotoImage(file='icons/happy.png')
+sadImg = PhotoImage(file='icons/upset.png')
+profImg = PhotoImage(file='icons/glass.png')
 
 emojiLabel1 = Label(root, background="DarkSeaGreen4")
 emojiLabel1.place(x=10, y=350)
